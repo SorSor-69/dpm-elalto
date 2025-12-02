@@ -1,0 +1,381 @@
+/* ============================================
+   OPTIMIZACIONES MOBILE - RESPONSIVE
+   ============================================ */
+
+/* Base para todos los dispositivos */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Pantallas pequeñas (móvil) */
+@media (max-width: 576px) {
+    /* General */
+    body {
+        font-size: 13px;
+        overflow-x: hidden;
+    }
+
+    /* Contenedor principal */
+    .container-fluid {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    /* Cards */
+    .card {
+        margin-bottom: 0.75rem;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-body {
+        padding: 0.75rem;
+    }
+
+    .card-header {
+        padding: 0.5rem 0.75rem;
+    }
+
+    /* Botones */
+    .btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.9rem;
+        border-radius: 4px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .btn-sm {
+        padding: 0.35rem 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .btn-group {
+        flex-wrap: wrap;
+        gap: 0.25rem;
+    }
+
+    .btn-group > .btn {
+        flex: 1 1 auto;
+        min-width: 80px;
+    }
+
+    /* Inputs y Formularios */
+    .form-control,
+    .form-select,
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    textarea,
+    select {
+        font-size: 16px; /* Previene zoom en iOS */
+        padding: 0.75rem;
+        border-radius: 4px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .form-group {
+        margin-bottom: 0.75rem;
+    }
+
+    label {
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+    }
+
+    /* Tablas */
+    .table {
+        font-size: 0.85rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .table thead th {
+        padding: 0.4rem;
+        font-size: 0.8rem;
+    }
+
+    .table tbody td {
+        padding: 0.4rem;
+        word-wrap: break-word;
+    }
+
+    /* Modales */
+    .modal-dialog {
+        margin: 0.5rem;
+        max-width: calc(100% - 1rem);
+    }
+
+    .modal-header {
+        padding: 0.75rem;
+    }
+
+    .modal-body {
+        padding: 0.75rem;
+    }
+
+    .modal-footer {
+        padding: 0.75rem;
+    }
+
+    .modal-title {
+        font-size: 1rem;
+    }
+
+    /* Headers */
+    .content-header h1 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .content-header .breadcrumb {
+        font-size: 0.85rem;
+        margin-bottom: 0;
+    }
+
+    /* Sidebar */
+    .sidebar-mini .main-sidebar {
+        width: 100vw;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+    }
+
+    /* Nav tabs */
+    .nav-tabs {
+        border-bottom: 1px solid #dee2e6;
+        gap: 0.25rem;
+    }
+
+    .nav-tabs .nav-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+        border-radius: 4px 4px 0 0;
+    }
+
+    /* Alerts */
+    .alert {
+        padding: 0.75rem;
+        margin-bottom: 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    /* Badges */
+    .badge {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.5rem;
+    }
+
+    /* Texto */
+    h1 { font-size: 1.3rem; }
+    h2 { font-size: 1.1rem; }
+    h3 { font-size: 1rem; }
+    h4 { font-size: 0.95rem; }
+    h5 { font-size: 0.9rem; }
+    h6 { font-size: 0.85rem; }
+
+    p { font-size: 0.9rem; }
+    small { font-size: 0.8rem; }
+
+    /* Spacing */
+    .mt-1, .mt-2, .mt-3, .mt-4, .mt-5 { margin-top: 0.25rem !important; }
+    .mb-1, .mb-2, .mb-3, .mb-4, .mb-5 { margin-bottom: 0.25rem !important; }
+    .pt-1, .pt-2, .pt-3, .pt-4, .pt-5 { padding-top: 0.25rem !important; }
+    .pb-1, .pb-2, .pb-3, .pb-4, .pb-5 { padding-bottom: 0.25rem !important; }
+
+    /* Iconos */
+    .fa, .fas, .far {
+        font-size: 0.95rem;
+    }
+
+    /* Dropdowns */
+    .dropdown-menu {
+        max-width: 100vw;
+        border-radius: 4px;
+    }
+
+    /* Tooltips y Popovers */
+    .tooltip-inner {
+        font-size: 0.8rem;
+        max-width: 150px;
+    }
+
+    .popover {
+        font-size: 0.85rem;
+    }
+
+    /* Data Tables */
+    .dataTables_length,
+    .dataTables_filter,
+    .dataTables_info {
+        font-size: 0.85rem !important;
+    }
+
+    .dataTables_paginate {
+        margin-top: 0.5rem;
+    }
+
+    .paginate_button {
+        padding: 0.3rem 0.6rem !important;
+        font-size: 0.8rem !important;
+    }
+
+    /* Leaflet Maps (para modales de ubicación) */
+    .leaflet-container {
+        width: 100%;
+        height: 300px;
+        border-radius: 6px;
+    }
+
+    .leaflet-control-container {
+        font-size: 0.9rem;
+    }
+
+    /* SweetAlert */
+    .swal2-popup {
+        width: calc(100% - 1rem) !important;
+        font-size: 0.95rem;
+    }
+
+    .swal2-title {
+        font-size: 1.1rem;
+    }
+
+    .swal2-html-container {
+        font-size: 0.9rem;
+    }
+
+    .swal2-confirm,
+    .swal2-cancel {
+        padding: 0.5rem 1rem !important;
+        font-size: 0.9rem !important;
+    }
+}
+
+/* Pantallas medianas (tablet) */
+@media (min-width: 577px) and (max-width: 768px) {
+    body {
+        font-size: 13px;
+    }
+
+    .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    .form-control,
+    input,
+    select,
+    textarea {
+        font-size: 15px;
+        padding: 0.6rem;
+    }
+
+    .table {
+        font-size: 0.9rem;
+    }
+
+    .content-header h1 {
+        font-size: 1.3rem;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .modal-body {
+        padding: 1rem;
+    }
+}
+
+/* Pantallas grandes (escritorio) */
+@media (min-width: 769px) {
+    body {
+        font-size: 14px;
+    }
+
+    .form-control,
+    input,
+    select,
+    textarea {
+        font-size: 14px;
+    }
+}
+
+/* Orientación horizontal en móviles */
+@media (max-width: 576px) and (orientation: landscape) {
+    .content-header h1 {
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .btn {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
+    }
+
+    .modal-body {
+        max-height: 70vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Touch-friendly spacing */
+.btn,
+.btn-group > .btn,
+a,
+button {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Prevenir zoom en inputs */
+input,
+select,
+textarea {
+    font-size: 16px !important;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Scroll personalizado para dispositivos móviles */
+.table-responsive,
+.modal-body,
+[style*="overflow-y: auto"] {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Sombras más suaves en móvil */
+@media (max-width: 576px) {
+    .shadow,
+    .shadow-sm {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12) !important;
+    }
+
+    .shadow-lg {
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+    }
+}

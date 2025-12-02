@@ -1,0 +1,10 @@
+{
+  "appId": "com.dpm.elalto",
+  "appName": "DPM El Alto",
+  "webDir": "public",
+  "bundledWebRuntime": false,
+  "server": {
+    "url": "https://REPLACE_WITH_PRODUCTION_URL",
+    "cleartext": false
+  }
+}
