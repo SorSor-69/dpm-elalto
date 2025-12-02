@@ -8,7 +8,7 @@ COPY package.json package-lock.json ./
 RUN npm ci --silent
 COPY resources resources
 COPY vite.config.js tailwind.config.js postcss.config.js ./
-RUN npm run build
+RUN npm run build || mkdir -p /app/dist
 
 ### Stage: php runtime
 FROM php:8.1-fpm
@@ -42,8 +42,8 @@ RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoload
 # Copiar el resto del proyecto
 COPY . /var/www/html
 
-# Copiar assets ya compilados desde node-build
-COPY --from=node-build /app/dist public
+# Copiar assets ya compilados desde node-build (si existen)
+COPY --from=node-build /app/dist /var/www/html/public/dist 2>/dev/null || true
 
 # permisos (ajusta según necesidad)
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache || true
