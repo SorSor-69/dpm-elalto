@@ -33,5 +33,6 @@ RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoload
 RUN mkdir -p storage framework bootstrap/cache || true
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache || true
 
-EXPOSE 9000
-CMD ["php-fpm"]
+EXPOSE 8080
+# Usar servidor embebido de PHP para exponer HTTP en Railway
+CMD ["php", "-S", "0.0.0.0:8080", "-t", "public"]
