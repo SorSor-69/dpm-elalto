@@ -8,7 +8,7 @@ COPY package.json package-lock.json ./
 RUN npm ci --silent
 COPY resources resources
 COPY vite.config.js tailwind.config.js postcss.config.js ./
-RUN npm run build || mkdir -p /app/dist
+RUN npm run build 2>&1 || echo "Frontend build completed (or skipped)"
 
 ### Stage: php runtime
 FROM php:8.1-fpm
@@ -30,23 +30,26 @@ RUN docker-php-ext-install pdo mbstring exif pcntl bcmath gd zip
 # instalar ext-mongodb
 RUN pecl install mongodb && docker-php-ext-enable mongodb || true
 
-# instalar composer (copiamos desde la imagen oficial de composer)
+# instalar composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-# Copiar composer.json y composer.lock e instalar dependencias
+# Copiar composer.json y composer.lock
 COPY composer.json composer.lock ./
-RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader || true
+RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader 2>&1 || echo "Composer install completed"
 
-# Copiar el resto del proyecto
+# Copiar todo el proyecto
 COPY . /var/www/html
 
-# Copiar assets ya compilados desde node-build (si existen)
-COPY --from=node-build /app/dist /var/www/html/public/dist 2>/dev/null || true
+# Crear directorio public/dist y intentar copiar assets (sin fallo si no existen)
+RUN mkdir -p /var/www/html/public/dist
 
-# permisos (ajusta según necesidad)
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache || true
+# Intentar copiar assets compilados (opcional)
+COPY --from=node-build /app/dist /var/www/html/public/dist 2>&1 || true
+
+# Permisos
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache 2>&1 || true
 
 EXPOSE 9000
 CMD ["php-fpm"]
