@@ -34,5 +34,6 @@ RUN mkdir -p storage framework bootstrap/cache || true
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache || true
 
 EXPOSE 8080
-# Usar servidor embebido de PHP para exponer HTTP en Railway
-CMD ["php", "-S", "0.0.0.0:8080", "-t", "public"]
+# Usar servidor embebido de PHP para exponer HTTP en Railway.
+# Usamos la variable de entorno PORT si está definida, o 8080 por defecto.
+CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8080} -t public"]
